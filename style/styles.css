@@ -13,6 +13,21 @@ body {
   height: 500px;
 }
 
+.display {
+  display: flex;
+  font-size: 3em;
+  font-weight: bold;
+  border: 2px solid #448d76;
+  border-radius: 10px;
+  min-width: 396px;
+  max-width: 396px;
+  max-height: 220px;
+  height: 180px;
+  box-sizing: border-box;
+  word-wrap: anywhere;
+  overflow: auto;
+}
+
 .operandsContainer {
   display: flex;
   width: 30%;
