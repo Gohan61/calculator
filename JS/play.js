@@ -13,6 +13,7 @@ const divideButton = document.createElement("button");
 const equalsButton = document.createElement("button");
 const clearButton = document.createElement("button");
 const displayCalculation = document.createElement("div");
+let numberBeforeOperator = "";
 
 //Operator functions
 function add(...numbers) {
@@ -62,38 +63,72 @@ for (let i = 1; i < 10; i++) {
       switch (true) {
         case button.textContent.includes(1):
           displayCalculation.textContent += 1;
+          numberBeforeOperator += "1";
           break;
         case button.textContent.includes(2):
           displayCalculation.textContent += 2;
+          numberBeforeOperator += "2";
           break;
         case button.textContent.includes(3):
           displayCalculation.textContent += 3;
+          numberBeforeOperator += "3";
           break;
         case button.textContent.includes(4):
           displayCalculation.textContent += 4;
+          numberBeforeOperator += "4";
           break;
         case button.textContent.includes(5):
           displayCalculation.textContent += 5;
+          numberBeforeOperator += "5";
           break;
         case button.textContent.includes(6):
           displayCalculation.textContent += 6;
-          break;
-        case button.textContent.includes(6):
-          displayCalculation.textContent += 6;
+          numberBeforeOperator += "6";
           break;
         case button.textContent.includes(7):
-          displayCalculation.textContent += 6;
+          displayCalculation.textContent += 7;
+          numberBeforeOperator += "7";
           break;
         case button.textContent.includes(8):
           displayCalculation.textContent += 8;
+          numberBeforeOperator += "8";
           break;
         case button.textContent.includes(9):
           displayCalculation.textContent += 9;
+          numberBeforeOperator += "9";
           break;
       }
     });
   });
 }
+
+clearButton.addEventListener("click", function clearDisplay() {
+  displayCalculation.textContent = "";
+});
+
+addButton.addEventListener("click", () => {
+  displayCalculation.textContent += "+";
+});
+
+subtractButton.addEventListener(
+  "click",
+  () => (displayCalculation.textContent += "-")
+);
+
+multiplyButton.addEventListener(
+  "click",
+  () => (displayCalculation.textContent += "*")
+);
+
+divideButton.addEventListener(
+  "click",
+  () => (displayCalculation.textContent += "/")
+);
+
+equalsButton.addEventListener(
+  "click",
+  operate(operator, firstOperand, secondOperand)
+);
 
 addButton.textContent = "+";
 subtractButton.textContent = "-";
