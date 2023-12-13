@@ -1,3 +1,4 @@
+const calculatorContainer = document.createElement("div");
 let firstOperand = 0;
 let secondOperand = 0;
 let operator = "";
@@ -35,4 +36,15 @@ function operate(operator, firstOperand, secondOperand) {
   }
 }
 
-operate("+", 1, 2);
+for (let i = 0; i < 10; i++) {
+  const operandButtons = [];
+  operandButtons.push(document.createElement("button"));
+
+  operandButtons.forEach((button) => {
+    button.setAttribute("class", "operands");
+    button.textContent = `${i}`;
+    calculatorContainer.appendChild(button);
+  });
+}
+
+document.body.appendChild(calculatorContainer);
