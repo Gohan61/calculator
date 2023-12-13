@@ -2,6 +2,7 @@
 const calculatorContainer = document.createElement("div");
 const operandsContainer = document.createElement("div");
 const operatorContainer = document.createElement("div");
+const operatortOperandContainer = document.createElement("div");
 let firstOperand = 0;
 let secondOperand = 0;
 let operator = "";
@@ -57,6 +58,40 @@ for (let i = 1; i < 10; i++) {
     button.setAttribute("class", "operands");
     button.textContent = `${i}`;
     operandsContainer.appendChild(button);
+    button.addEventListener("click", function showOnDisplay() {
+      switch (true) {
+        case button.textContent.includes(1):
+          displayCalculation.textContent += 1;
+          break;
+        case button.textContent.includes(2):
+          displayCalculation.textContent += 2;
+          break;
+        case button.textContent.includes(3):
+          displayCalculation.textContent += 3;
+          break;
+        case button.textContent.includes(4):
+          displayCalculation.textContent += 4;
+          break;
+        case button.textContent.includes(5):
+          displayCalculation.textContent += 5;
+          break;
+        case button.textContent.includes(6):
+          displayCalculation.textContent += 6;
+          break;
+        case button.textContent.includes(6):
+          displayCalculation.textContent += 6;
+          break;
+        case button.textContent.includes(7):
+          displayCalculation.textContent += 6;
+          break;
+        case button.textContent.includes(8):
+          displayCalculation.textContent += 8;
+          break;
+        case button.textContent.includes(9):
+          displayCalculation.textContent += 9;
+          break;
+      }
+    });
   });
 }
 
@@ -79,7 +114,9 @@ clearButton.textContent = "Clear";
 //Append to body
 calculatorContainer.setAttribute("class", "container");
 document.body.appendChild(calculatorContainer);
-calculatorContainer.append(operandsContainer, operatorContainer);
+calculatorContainer.append(operatortOperandContainer);
+operatortOperandContainer.append(operandsContainer, operatorContainer);
+operatortOperandContainer.setAttribute("class", "container");
 operandsContainer.setAttribute("class", "operandsContainer");
 operatorContainer.setAttribute("class", "operatorContainer");
 
@@ -93,4 +130,4 @@ operatorContainer.append(
 );
 
 displayCalculation.setAttribute("class", "display");
-calculatorContainer.appendChild(displayCalculation);
+calculatorContainer.prepend(displayCalculation);
