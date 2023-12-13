@@ -1,0 +1,52 @@
+body {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 900px;
+  height: 500px;
+}
+
+.operandsContainer {
+  display: flex;
+  width: 30%;
+  height: 100%;
+  flex-wrap: wrap;
+}
+
+.operatorContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.operands {
+  font-size: 7em;
+  background-color: #093426;
+  color: white;
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.operators {
+  font-size: 50px;
+  background-color: #23483c;
+  color: white;
+  padding: 0;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.operators:last-child {
+  font-weight: bold;
+  font-size: 40px;
+  padding: 0 10px;
+}
