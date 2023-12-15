@@ -19,31 +19,34 @@ let temporaryResult = "";
 
 //Operator functions
 function add(firstOperand, secondOperand) {
-  temporaryResult = Number(firstOperand) + Number(secondOperand);
-  Number(temporaryResult);
+  temporaryResult = (Number(firstOperand) + Number(secondOperand)).toFixed(2);
   displayCalculation.textContent = temporaryResult;
   numbersInCalculator.splice(0, 2, temporaryResult);
 }
 
 function subtract(firstOperand, secondOperand) {
   temporaryResult = Number(firstOperand) - Number(secondOperand);
-  Number(temporaryResult);
+  Number(temporaryResult).toFixed(2);
   displayCalculation.textContent = temporaryResult;
   numbersInCalculator.splice(0, 2, temporaryResult);
 }
 
 function multiply(firstOperand, secondOperand) {
   temporaryResult = Number(firstOperand) * Number(secondOperand);
-  Number(temporaryResult);
+  Number(temporaryResult).toFixed(2);
   displayCalculation.textContent = temporaryResult;
   numbersInCalculator.splice(0, 2, temporaryResult);
 }
 
 function divide(firstOperand, secondOperand) {
-  temporaryResult = Number(firstOperand) / Number(secondOperand);
-  Number(temporaryResult);
-  displayCalculation.textContent = temporaryResult;
-  numbersInCalculator.splice(0, 2, temporaryResult);
+  if (secondOperand === "0") {
+    displayCalculation.textContent = "Can't divide by zero";
+  } else {
+    temporaryResult = Number(firstOperand) / Number(secondOperand);
+    Number(temporaryResult).toFixed(2);
+    displayCalculation.textContent = temporaryResult;
+    numbersInCalculator.splice(0, 2, temporaryResult);
+  }
 }
 
 //Calculate fucntion
@@ -124,8 +127,12 @@ const dotOperand = document.createElement("button");
 dotOperand.setAttribute("class", "operands");
 dotOperand.textContent = ".";
 dotOperand.addEventListener("click", function showOnDisplay() {
-  displayCalculation.textContent += ".";
-  numberBeforeOperator += ".";
+  if (numberBeforeOperator.includes(".")) {
+    return;
+  } else {
+    displayCalculation.textContent += ".";
+    numberBeforeOperator += ".";
+  }
 });
 operandsContainer.appendChild(dotOperand);
 
