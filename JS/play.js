@@ -65,7 +65,7 @@ function operate(operator, firstOperand, secondOperand) {
 }
 
 //Buttons for operands + operators
-for (let i = 1; i < 10; i++) {
+for (let i = 0; i < 10; i++) {
   const operandButtons = [];
   operandButtons.push(document.createElement("button"));
 
@@ -75,48 +75,43 @@ for (let i = 1; i < 10; i++) {
     operandsContainer.appendChild(button);
     button.addEventListener("click", function showOnDisplay() {
       switch (true) {
+        case button.textContent.includes(0):
+          displayCalculation.textContent += 0;
+          numberBeforeOperator += 0;
+          break;
         case button.textContent.includes(1):
-          displayCalculation.textContent = "";
           displayCalculation.textContent += 1;
           numberBeforeOperator += "1";
           break;
         case button.textContent.includes(2):
-          displayCalculation.textContent = "";
           displayCalculation.textContent += 2;
           numberBeforeOperator += "2";
           break;
         case button.textContent.includes(3):
-          displayCalculation.textContent = "";
           displayCalculation.textContent += 3;
           numberBeforeOperator += "3";
           break;
         case button.textContent.includes(4):
-          displayCalculation.textContent = "";
           displayCalculation.textContent += 4;
           numberBeforeOperator += "4";
           break;
         case button.textContent.includes(5):
-          displayCalculation.textContent = "";
           displayCalculation.textContent += 5;
           numberBeforeOperator += "5";
           break;
         case button.textContent.includes(6):
-          displayCalculation.textContent = "";
           displayCalculation.textContent += 6;
           numberBeforeOperator += "6";
           break;
         case button.textContent.includes(7):
-          displayCalculation.textContent = "";
           displayCalculation.textContent += 7;
           numberBeforeOperator += "7";
           break;
         case button.textContent.includes(8):
-          displayCalculation.textContent = "";
           displayCalculation.textContent += 8;
           numberBeforeOperator += "8";
           break;
         case button.textContent.includes(9):
-          displayCalculation.textContent = "";
           displayCalculation.textContent += 9;
           numberBeforeOperator += "9";
           break;
@@ -124,6 +119,15 @@ for (let i = 1; i < 10; i++) {
     });
   });
 }
+
+const dotOperand = document.createElement("button");
+dotOperand.setAttribute("class", "operands");
+dotOperand.textContent = ".";
+dotOperand.addEventListener("click", function showOnDisplay() {
+  displayCalculation.textContent += ".";
+  numberBeforeOperator += ".";
+});
+operandsContainer.appendChild(dotOperand);
 
 clearButton.addEventListener("click", function clearDisplay() {
   displayCalculation.textContent = "";
@@ -137,6 +141,7 @@ addButton.addEventListener("click", () => {
   if (temporaryResult === "" && numbersInCalculator.length === 0) {
     numbersInCalculator.push(numberBeforeOperator);
     numberBeforeOperator = "";
+    displayCalculation.textContent += "+";
   } else if (temporaryResult !== "" && numbersInCalculator.length === 1) {
     numbersInCalculator.push(numberBeforeOperator);
     operate(operator, numbersInCalculator[0], numbersInCalculator[1]);
