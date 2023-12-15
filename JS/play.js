@@ -19,19 +19,22 @@ let temporaryResult = "";
 
 //Operator functions
 function add(firstOperand, secondOperand) {
-  temporaryResult = (Number(firstOperand) + Number(secondOperand)).toFixed(2);
+  temporaryResult =
+    Math.round((Number(firstOperand) + Number(secondOperand)) * 100) / 100;
   displayCalculation.textContent = temporaryResult;
   numbersInCalculator.splice(0, 2, temporaryResult);
 }
 
 function subtract(firstOperand, secondOperand) {
-  temporaryResult = (Number(firstOperand) - Number(secondOperand)).toFixed(2);
+  temporaryResult =
+    Math.round((Number(firstOperand) - Number(secondOperand)) * 100) / 100;
   displayCalculation.textContent = temporaryResult;
   numbersInCalculator.splice(0, 2, temporaryResult);
 }
 
 function multiply(firstOperand, secondOperand) {
-  temporaryResult = (Number(firstOperand) * Number(secondOperand)).toFixed(2);
+  temporaryResult =
+    Math.round(Number(firstOperand) * Number(secondOperand) * 100) / 100;
   displayCalculation.textContent = temporaryResult;
   numbersInCalculator.splice(0, 2, temporaryResult);
 }
@@ -40,7 +43,8 @@ function divide(firstOperand, secondOperand) {
   if (secondOperand === "0") {
     displayCalculation.textContent = "Can't divide by zero";
   } else {
-    temporaryResult = (Number(firstOperand) / Number(secondOperand)).toFixed(2);
+    temporaryResult =
+      Math.round((Number(firstOperand) / Number(secondOperand)) * 100) / 100;
     displayCalculation.textContent = temporaryResult;
     numbersInCalculator.splice(0, 2, temporaryResult);
   }
