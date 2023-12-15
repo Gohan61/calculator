@@ -74,6 +74,9 @@ for (let i = 0; i < 10; i++) {
     button.textContent = `${i}`;
     operandsContainer.appendChild(button);
     button.addEventListener("click", function showOnDisplay() {
+      if (numberBeforeOperator === "") {
+        displayCalculation.textContent = "";
+      }
       switch (true) {
         case button.textContent.includes(0):
           displayCalculation.textContent += 0;
@@ -145,7 +148,6 @@ addButton.addEventListener("click", () => {
   if (temporaryResult === "" && numbersInCalculator.length === 0) {
     numbersInCalculator.push(numberBeforeOperator);
     numberBeforeOperator = "";
-    displayCalculation.textContent += "+";
   } else if (temporaryResult !== "" && numbersInCalculator.length === 1) {
     numbersInCalculator.push(numberBeforeOperator);
     operate(operator, numbersInCalculator[0], numbersInCalculator[1]);
