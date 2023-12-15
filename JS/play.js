@@ -12,6 +12,7 @@ const multiplyButton = document.createElement("button");
 const divideButton = document.createElement("button");
 const equalsButton = document.createElement("button");
 const clearButton = document.createElement("button");
+const backspaceButton = document.createElement("button");
 const displayCalculation = document.createElement("div");
 let numberBeforeOperator = "";
 let numbersInCalculator = [];
@@ -131,6 +132,9 @@ const dotOperand = document.createElement("button");
 dotOperand.setAttribute("class", "operands");
 dotOperand.textContent = ".";
 dotOperand.addEventListener("click", function showOnDisplay() {
+  if (numberBeforeOperator === "") {
+    displayCalculation.textContent = "";
+  }
   if (numberBeforeOperator.includes(".")) {
     return;
   } else {
@@ -147,6 +151,14 @@ clearButton.addEventListener("click", function clearDisplay() {
   numbersInCalculator = [];
   temporaryResult = "";
 });
+
+backspaceButton.setAttribute("class", "operators");
+backspaceButton.textContent = "Delete";
+backspaceButton.addEventListener("click", function backSpace() {
+  displayCalculation.textContent = "";
+  numberBeforeOperator = "";
+});
+operatorContainer.appendChild(backspaceButton);
 
 addButton.addEventListener("click", () => {
   if (temporaryResult === "" && numbersInCalculator.length === 0) {
