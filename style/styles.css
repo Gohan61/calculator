@@ -37,10 +37,11 @@ body {
 }
 
 .operandsContainer {
-  display: flex;
+  display: grid;
   width: 80%;
   height: 100%;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 }
 
 .operatorContainer {
@@ -60,8 +61,12 @@ body {
   align-items: center;
 }
 
+.operands:first-child {
+  grid-area: 4 / 2;
+}
+
 .operands:last-child {
-  width: 30%;
+  grid-area: 4 / 3;
 }
 
 .operators {
