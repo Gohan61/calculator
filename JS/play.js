@@ -70,61 +70,65 @@ function operate(operator, firstOperand, secondOperand) {
 }
 
 //Buttons for operands + operators
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 11; i++) {
   const operandButtons = [];
   operandButtons.push(document.createElement("button"));
 
   operandButtons.forEach((button) => {
     button.setAttribute("class", "operands");
-    button.textContent = `${i}`;
+    if (i !== 10) {
+      button.textContent = `${i}`;
+    }
     operandsContainer.appendChild(button);
-    button.addEventListener("click", function showOnDisplay() {
-      if (numberBeforeOperator === "") {
-        displayCalculation.textContent = "";
-      }
-      switch (true) {
-        case button.textContent.includes(0):
-          displayCalculation.textContent += 0;
-          numberBeforeOperator += 0;
-          break;
-        case button.textContent.includes(1):
-          displayCalculation.textContent += 1;
-          numberBeforeOperator += "1";
-          break;
-        case button.textContent.includes(2):
-          displayCalculation.textContent += 2;
-          numberBeforeOperator += "2";
-          break;
-        case button.textContent.includes(3):
-          displayCalculation.textContent += 3;
-          numberBeforeOperator += "3";
-          break;
-        case button.textContent.includes(4):
-          displayCalculation.textContent += 4;
-          numberBeforeOperator += "4";
-          break;
-        case button.textContent.includes(5):
-          displayCalculation.textContent += 5;
-          numberBeforeOperator += "5";
-          break;
-        case button.textContent.includes(6):
-          displayCalculation.textContent += 6;
-          numberBeforeOperator += "6";
-          break;
-        case button.textContent.includes(7):
-          displayCalculation.textContent += 7;
-          numberBeforeOperator += "7";
-          break;
-        case button.textContent.includes(8):
-          displayCalculation.textContent += 8;
-          numberBeforeOperator += "8";
-          break;
-        case button.textContent.includes(9):
-          displayCalculation.textContent += 9;
-          numberBeforeOperator += "9";
-          break;
-      }
-    });
+    if (i !== 10) {
+      button.addEventListener("click", function showOnDisplay() {
+        if (numberBeforeOperator === "") {
+          displayCalculation.textContent = "";
+        }
+        switch (true) {
+          case button.textContent.includes(0):
+            displayCalculation.textContent += 0;
+            numberBeforeOperator += 0;
+            break;
+          case button.textContent.includes(1):
+            displayCalculation.textContent += 1;
+            numberBeforeOperator += "1";
+            break;
+          case button.textContent.includes(2):
+            displayCalculation.textContent += 2;
+            numberBeforeOperator += "2";
+            break;
+          case button.textContent.includes(3):
+            displayCalculation.textContent += 3;
+            numberBeforeOperator += "3";
+            break;
+          case button.textContent.includes(4):
+            displayCalculation.textContent += 4;
+            numberBeforeOperator += "4";
+            break;
+          case button.textContent.includes(5):
+            displayCalculation.textContent += 5;
+            numberBeforeOperator += "5";
+            break;
+          case button.textContent.includes(6):
+            displayCalculation.textContent += 6;
+            numberBeforeOperator += "6";
+            break;
+          case button.textContent.includes(7):
+            displayCalculation.textContent += 7;
+            numberBeforeOperator += "7";
+            break;
+          case button.textContent.includes(8):
+            displayCalculation.textContent += 8;
+            numberBeforeOperator += "8";
+            break;
+          case button.textContent.includes(9):
+            displayCalculation.textContent += 9;
+            numberBeforeOperator += "9";
+            break;
+        }
+      });
+    }
   });
 }
 
