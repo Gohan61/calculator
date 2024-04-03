@@ -247,7 +247,7 @@ clearButton.textContent = "Clear";
 ].forEach((el) => el.setAttribute("class", "operators"));
 
 //Append to body
-calculatorContainer.setAttribute("class", "container");
+calculatorContainer.setAttribute("class", "calculator-container");
 document.body.appendChild(calculatorContainer);
 calculatorContainer.append(operatortOperandContainer);
 operatortOperandContainer.append(operandsContainer, operatorContainer);
