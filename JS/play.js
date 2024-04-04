@@ -17,6 +17,7 @@ const displayCalculation = document.createElement("div");
 let numberBeforeOperator = "";
 let numbersInCalculator = [];
 let temporaryResult = "";
+let equalsPressed = false;
 
 //Operator functions
 function add(firstOperand, secondOperand) {
@@ -82,7 +83,7 @@ for (let i = 0; i < 11; i++) {
     operandsContainer.appendChild(button);
     if (i !== 10) {
       button.addEventListener("click", function showOnDisplay() {
-        if (numberBeforeOperator === "") {
+        if (numberBeforeOperator === "" || equalsPressed) {
           displayCalculation.textContent = "";
         }
         switch (true) {
@@ -148,13 +149,15 @@ dotOperand.addEventListener("click", function showOnDisplay() {
 });
 operandsContainer.appendChild(dotOperand);
 
-clearButton.addEventListener("click", function clearDisplay() {
+clearButton.addEventListener("click", clearDisplay);
+
+function clearDisplay() {
   displayCalculation.textContent = "";
   numberBeforeOperator = "";
   operator = "";
   numbersInCalculator = [];
   temporaryResult = "";
-});
+}
 
 backspaceButton.setAttribute("class", "operators");
 backspaceButton.textContent = "Delete";
@@ -164,7 +167,9 @@ backspaceButton.addEventListener("click", function backSpace() {
 });
 operatorContainer.appendChild(backspaceButton);
 
-addButton.addEventListener("click", () => {
+addButton.addEventListener("click", plusOperator);
+
+function plusOperator() {
   if (temporaryResult === "" && numbersInCalculator.length === 0) {
     numbersInCalculator.push(numberBeforeOperator);
     numberBeforeOperator = "";
@@ -178,9 +183,11 @@ addButton.addEventListener("click", () => {
     numberBeforeOperator = "";
   }
   operator = "+";
-});
+}
 
-subtractButton.addEventListener("click", () => {
+subtractButton.addEventListener("click", subtractOperator);
+
+function subtractOperator() {
   if (temporaryResult === "" && numbersInCalculator.length === 0) {
     numbersInCalculator.push(numberBeforeOperator);
     numberBeforeOperator = "";
@@ -194,9 +201,11 @@ subtractButton.addEventListener("click", () => {
     numberBeforeOperator = "";
   }
   operator = "-";
-});
+}
 
-multiplyButton.addEventListener("click", () => {
+multiplyButton.addEventListener("click", multiplyOperator);
+
+function multiplyOperator() {
   if (temporaryResult === "" && numbersInCalculator.length === 0) {
     numbersInCalculator.push(numberBeforeOperator);
     numberBeforeOperator = "";
@@ -210,9 +219,11 @@ multiplyButton.addEventListener("click", () => {
     numberBeforeOperator = "";
   }
   operator = "*";
-});
+}
 
-divideButton.addEventListener("click", () => {
+divideButton.addEventListener("click", divideOperator);
+
+function divideOperator() {
   if (temporaryResult === "" && numbersInCalculator.length === 0) {
     numbersInCalculator.push(numberBeforeOperator);
     numberBeforeOperator = "";
@@ -226,13 +237,16 @@ divideButton.addEventListener("click", () => {
     numberBeforeOperator = "";
   }
   operator = "/";
-});
+}
 
-equalsButton.addEventListener("click", () => {
+equalsButton.addEventListener("click", equalsOperator);
+
+function equalsOperator() {
   numbersInCalculator.push(numberBeforeOperator);
   operate(operator, numbersInCalculator[0], numbersInCalculator[1]);
   numberBeforeOperator = "";
-});
+  equalsPressed = true;
+}
 
 addButton.textContent = "+";
 subtractButton.textContent = "-";
@@ -249,6 +263,40 @@ clearButton.textContent = "Clear";
   equalsButton,
   clearButton,
 ].forEach((el) => el.setAttribute("class", "operators"));
+
+//Keyboard listener
+document.onkeyup = function (e) {
+  if (e.key === "*") {
+    multiplyOperator();
+    displayCalculation.textContent = "";
+  } else if (/Digit[0-9]/.test(e.code) || e.key === ".") {
+    if (equalsPressed) {
+      displayCalculation.textContent = "";
+      equalsPressed = false;
+    }
+    displayCalculation.textContent += e.key;
+    numberBeforeOperator += e.key;
+  } else if (e.key === "Backspace") {
+    let currentDigits = displayCalculation.textContent;
+    currentDigits = currentDigits.slice(0, -1);
+    displayCalculation.textContent = currentDigits;
+    numberBeforeOperator = currentDigits;
+  } else if (e.key === "+") {
+    plusOperator();
+    displayCalculation.textContent = "";
+  } else if (e.key === "-") {
+    subtractOperator();
+    displayCalculation.textContent = "";
+  } else if (e.key === "/") {
+    divideOperator();
+    displayCalculation.textContent = "";
+  } else if (e.key === "Enter") {
+    equalsOperator();
+    equalsPressed = true;
+  } else if (e.key === "Escape") {
+    clearDisplay();
+  }
+};
 
 //Append to body
 calculatorContainer.setAttribute("class", "calculator-container");
