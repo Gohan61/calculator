@@ -85,3 +85,14 @@ body {
   font-size: 40px;
   padding: 0 10px;
 }
+
+.operandsContainer button:nth-child(11) {
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.operandsContainer button:nth-child(11) span {
+  padding-top: 10px;
+}

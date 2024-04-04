@@ -318,3 +318,11 @@ operatorContainer.append(
 
 displayCalculation.setAttribute("class", "display");
 calculatorContainer.prepend(displayCalculation);
+
+const emptyOne = document.querySelector(
+  ".operandsContainer button:nth-child(11)"
+);
+emptyOne.textContent = "Pres 'Backspace' for 'Delete'";
+const emptyOneSubText = document.createElement("span");
+emptyOneSubText.textContent = "Press 'Escape' for 'Clear'";
+emptyOne.appendChild(emptyOneSubText);
